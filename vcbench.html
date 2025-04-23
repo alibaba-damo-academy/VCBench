@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency</title>
+
+ 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://cloudcatcher888.github.io/">Zhikai Wang</a><sup>*</sup><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#36ae70;">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://gasolsun36.github.io/">Jiashuo Sun</a><sup>*</sup><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#36ae70;">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://zwq2018.github.io/">Wenqi Zhang</a><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#cbaa3e;">3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hzq950419.github.io/HomePage/">Zhiqiang Hu</a><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#4b60ed;">4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://lixin4ever.github.io/">Xin Li</a><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#36ae70;">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=WCRGTHsAAAAJ&hl=en">Fan Wang</a><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#36ae70;">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://zhaodeli.github.io/">Deli Zhao</a><sup style="color:#ed4b82;">1</sup><sup>,</sup><sup style="color:#36ae70;">2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup style="color:#ed4b82;">1</sup>DAMO Academy, Alibaba Group</span>,
+              <span class="author-block"><sup style="color:#36ae70;">2</sup>Hupan Lab</span>,
+              <span class="author-block"><sup style="color:#cbaa3e;">3</sup>Zhejiang University</span>,
+              <span class="author-block"><sup style="color:#4b60ed;">4</sup>Singapore University of Technology and Design</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero demo">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/home.png" alt="Home" style="width: 100%;">
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mathvista_other">
+        <span class="mathvista_other" style="vertical-align: middle">VC-Bench</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered is-vcentered">
+        <div class="column is-half has-text-centered">
+            <img src="./static/images/vc_bench.png" class="interpolation-image" alt="Introduction image" style="height: 300px; width: auto;">
+        </div>
+        <div class="column is-half has-text-centered">
+            <img src="./static/images/vc_bench_pro.png" class="interpolation-image" alt="Introduction image 1" style="height: 300px; width: auto;">
+        </div>
+    </div>
+      <p class="has-text-centered mt-4">
+        We introduce VC-Bench, a benchmark for evaluating explicit visual dependency in multimodal mathematical reasoning.
+      </p>
+    </div>
+  </section>
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class = "title is-2">
+        <span style="vertical-align: middle">Comparision of VCBench and Other Visual Math Benchmarks 
+        </span>
+      </h1>
+    </div>
+  </section>
+  
+  <section class="section" id="Dataset">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+  
+            <div class="content has-text-justified">
+            
+  
+            <centering>
+              <div class="column is-six-fifths" width="100%">
+                <div style="text-align: left;">
+                    <img id="pie" width="100%" src="./static/images/compare_table.png">
+                    <p style="font-family:Times New Roman">
+                      <font size=4>
+                        <b>Comparing ECBench and widely adopted Visual Math Benchmarks.</b>
+                        VCBench not only covers all required skills and supports multi-image questions, but also has a higher image-to-question ratio, indicating richer visual context per question compared to other benchmarks.
+                      </font>
+                  </div>
+                </div>
+                <div class="column is-six-fifths" width="100%">
+                  <div style="text-align: center;">
+                      <img id="pie" width="40%" src="./static/images/data_analysis.png">
+                      <p style="font-family:Times New Roman">
+                        <font size=4>
+                          <b>Data analysis of ECBench</b>
+                          reflects a rich diversity of scenario categories, video sources, and evaluation dimensions.
+                        </font>
+                    </div>
+                  </div>
+  
+            </centering>
+            <br>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3">Visual samples from our VC-Bench</h2>
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="box m-5">
+              
+              <div class="content has-text-centered">
+                <img src="static/images/case1.png" alt="sample1" width="100%"/>
+              </div>
+            </div>
+            <div class="box m-5">
+              
+              <div class="content has-text-centered">
+                <img src="static/images/case2.png" alt="sample2" width="100%"/>
+              </div>
+            </div>
+            <div class="box m-5">
+              
+              <div class="content has-text-centered">
+                <img src="static/images/case3.png" alt="sample3" width="100%"/>
+              </div>
+            </div>
+            <div class="box m-5">
+              
+              <div class="content has-text-centered">
+                <img src="static/images/case4.png" alt="sample4" width="100%"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mathvista_other">
+        <span class="mathvista_other" style="vertical-align: middle">Main Results</span>
+      </h1>
+    </div>
+  </section>
+
+
+  <section class="section" id="Leaderboard">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full has-text-centered content">
+          <div class="content">
+            <p>
+              Performance of various vision-language models on a Multi-image setting across multiple tasks, including Time and Calendar, Space and Location, Geometry and Shapes, Objects and Motion, Reasoning and Observation, and Organization and Pattern.
+            </p>
+            <div style="overflow-x: auto; width: 100%; margin: 0 auto;">
+            <table class="table is-striped js-sort-table" id="results" style="width:40%; margin:0 auto; font-size:13px;">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="vertical-align: middle;"><strong>Models</strong></th>
+                  <th colspan="2" style="text-align: center;"><strong>Time and Calendar</strong></th>
+                  <th colspan="3" style="text-align: center;"><strong>Space and Location</strong></th>
+                  <th colspan="5" style="text-align: center;"><strong>Geometry and Shapes</strong></th>
+                  <th colspan="2" style="text-align: center;"><strong>Objects and Motion</strong></th>
+                  <th colspan="2" style="text-align: center;"><strong>Reasoning and Observation</strong></th>
+                  <th colspan="3" style="text-align: center;"><strong>Organization and Pattern</strong></th>
+                  <th rowspan="2" style="vertical-align: middle;"><strong>Avg.</strong></th>
+                </tr>
+                <tr>
+                  <th style="text-align: center;"><strong>Calender</strong></th>
+                  <th style="text-align: center;"><strong>Clock</strong></th>
+                  <th style="text-align: center;"><strong>Direction</strong></th>
+                  <th style="text-align: center;"><strong>Location</strong></th>
+                  <th style="text-align: center;"><strong>Place</strong></th>
+                  <th style="text-align: center;"><strong>Angle</strong></th>
+                  <th style="text-align: center;"><strong>Quad</strong></th>
+                  <th style="text-align: center;"><strong>Rectangular</strong></th>
+                  <th style="text-align: center;"><strong>Shape</strong></th>
+                  <th style="text-align: center;"><strong>Triangle</strong></th>
+                  <th style="text-align: center;"><strong>Cube</strong></th>
+                  <th style="text-align: center;"><strong>Move</strong></th>
+                  <th style="text-align: center;"><strong>Reasoning</strong></th>
+                  <th style="text-align: center;"><strong>Observe</strong></th>
+                  <th style="text-align: center;"><strong>Organize</strong></th>
+                  <th style="text-align: center;"><strong>Pattern</strong></th>
+                  <th style="text-align: center;"><strong>Weight</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Random Guess</td>
+                  <td style="background-color: #cce5ff; text-align: center;">33.33</td>
+                  <td style="background-color: #cce5ff; text-align: center;">32.78</td>
+                  <td style="background-color: #ccffcc; text-align: center;">25.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">29.81</td>
+                  <td style="background-color: #ccffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">27.63</td>
+                  <td style="background-color: #ffffcc; text-align: center;">29.17</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.84</td>
+                  <td style="background-color: #ffffcc; text-align: center;">29.01</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">28.37</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">29.35</td>
+                  <td style="background-color: #ccfafa; text-align: center;">33.33</td>
+                  <td style="background-color: #ccfafa; text-align: center;">29.41</td>
+                  <td style="background-color: #ffcccc; text-align: center;">30.17</td>
+                  <td style="background-color: #ffcccc; text-align: center;">31.32</td>
+                  <td style="background-color: #ffcccc; text-align: center;">33.33</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">29.83</td>
+                </tr>
+                <tr>
+                  <td>Human</td>
+                  <td style="background-color: #cce5ff; text-align: center;">100</td>
+                  <td style="background-color: #cce5ff; text-align: center;">96.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">100</td>
+                  <td style="background-color: #ccffcc; text-align: center;">93.85</td>
+                  <td style="background-color: #ccffcc; text-align: center;">96.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">95.60</td>
+                  <td style="background-color: #ffffcc; text-align: center;">96.84</td>
+                  <td style="background-color: #ffffcc; text-align: center;">95.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">94.02</td>
+                  <td style="background-color: #ffffcc; text-align: center;">94.07</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">97.67</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">94.63</td>
+                  <td style="background-color: #ccfafa; text-align: center;">100</td>
+                  <td style="background-color: #ccfafa; text-align: center;">93.59</td>
+                  <td style="background-color: #ffcccc; text-align: center;">93.20</td>
+                  <td style="background-color: #ffcccc; text-align: center;">95.52</td>
+                  <td style="background-color: #ffcccc; text-align: center;">100</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">93.30</td>
+                </tr>
+                <tr>
+                  <td colspan="19" style="background-color: #e0e0e0; text-align: center; font-style: italic; font-weight: bold;">Models</td>
+                </tr>
+                <tr>
+                  <td>Gemini2.0-Flash 🥇</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>70.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">20.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>57.69</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">70.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>68.42</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">53.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>61.14</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">70.37</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">44.52</td>
+                  <td style="background-color: #ffe5cc; text-align: center;"><u><b>68.75</b></u></td>
+                  <td style="background-color: #ccfafa; text-align: center;">40.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">35.53</td>
+                  <td style="background-color: #ffcccc; text-align: center;">74.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">46.55</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;"><u><b>49.77</b></u></td>
+                </tr>
+                <tr>
+                  <td>Qwen2.5-VL-72B-Instruct 🥈</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">40.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">53.85</td>
+                  <td style="background-color: #ccffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">68.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>68.42</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">53.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;">55.02</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>74.07</b></u></td>
+                  <td style="background-color: #ffe5cc; text-align: center;"><u><b>58.22</b></u></td>
+                  <td style="background-color: #ffe5cc; text-align: center;">60.66</td>
+                  <td style="background-color: #ccfafa; text-align: center;">60.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">35.53</td>
+                  <td style="background-color: #ffcccc; text-align: center;">76.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">43.10</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">48.08</td>
+                </tr>
+                <tr>
+                  <td>LLaVA-OneVision-72B 🥉</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">33.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">26.92</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">61.20</td>
+                  <td style="background-color: #ffffcc; text-align: center;">57.89</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>57.14</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">60.70</td>
+                  <td style="background-color: #ffffcc; text-align: center;">51.85</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">41.10</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">60.29</td>
+                  <td style="background-color: #ccfafa; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccfafa; text-align: center;"><u><b>38.24</b></u></td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>82.00</b></u></td>
+                  <td style="background-color: #ffcccc; text-align: center;">41.38</td>
+                  <td style="background-color: #ffcccc; text-align: center;">80.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">47.67</td>
+                </tr>
+                <tr>
+                  <td>Qwen-VL-Max</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">46.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">42.31</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>74.00</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">52.63</td>
+                  <td style="background-color: #ffffcc; text-align: center;">42.86</td>
+                  <td style="background-color: #ffffcc; text-align: center;">54.15</td>
+                  <td style="background-color: #ffffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">56.16</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">60.66</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">35.27</td>
+                  <td style="background-color: #ffcccc; text-align: center;">68.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">39.66</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">47.03</td>
+                </tr>
+                <tr>
+                  <td>Claude-3.7-Sonnet</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">50.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">53.85</td>
+                  <td style="background-color: #ccffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">58.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">63.16</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>57.14</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">60.70</td>
+                  <td style="background-color: #ffffcc; text-align: center;">59.26</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">40.41</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">67.28</td>
+                  <td style="background-color: #ccfafa; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccfafa; text-align: center;">31.27</td>
+                  <td style="background-color: #ffcccc; text-align: center;">76.40</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>53.45</b></u></td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">46.63</td>
+                </tr>
+                <tr>
+                  <td>GPT-4o</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">40.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">20.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">30.77</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">46.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">57.89</td>
+                  <td style="background-color: #ffffcc; text-align: center;">28.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;">50.22</td>
+                  <td style="background-color: #ffffcc; text-align: center;">51.85</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">37.67</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">50.37</td>
+                  <td style="background-color: #ccfafa; text-align: center;">90.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">31.27</td>
+                  <td style="background-color: #ffcccc; text-align: center;">76.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">37.93</td>
+                  <td style="background-color: #ffcccc; text-align: center;">80.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">40.29</td>
+                </tr>
+                <tr>
+                  <td>QVQ-72B-Preview</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">43.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">46.15</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>83.33</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">58.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">42.11</td>
+                  <td style="background-color: #ffffcc; text-align: center;">46.43</td>
+                  <td style="background-color: #ffffcc; text-align: center;">44.10</td>
+                  <td style="background-color: #ffffcc; text-align: center;">62.96</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">36.30</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">48.16</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">28.55</td>
+                  <td style="background-color: #ffcccc; text-align: center;">78.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">48.28</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">39.13</td>
+                </tr>
+                <tr>
+                  <td>Gemma3-27B-it</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">50.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">38.46</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>83.33</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">48.40</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.58</td>
+                  <td style="background-color: #ffffcc; text-align: center;">25.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">41.92</td>
+                  <td style="background-color: #ffffcc; text-align: center;">40.74</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">32.88</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">47.79</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">32.82</td>
+                  <td style="background-color: #ffcccc; text-align: center;">54.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">31.03</td>
+                  <td style="background-color: #ffcccc; text-align: center;">80.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">38.02</td>
+                </tr>
+                <tr>
+                  <td>InternVL2.5-78B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">20.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">31.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">42.31</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">54.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">47.37</td>
+                  <td style="background-color: #ffffcc; text-align: center;">46.43</td>
+                  <td style="background-color: #ffffcc; text-align: center;">53.28</td>
+                  <td style="background-color: #ffffcc; text-align: center;">55.56</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">33.56</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">40.44</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">28.04</td>
+                  <td style="background-color: #ffcccc; text-align: center;">76.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">31.03</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">37.56</td>
+                </tr>
+                <tr>
+                  <td>Kimi-VL-A3B-Instruct</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">46.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">30.77</td>
+                  <td style="background-color: #ccffcc; text-align: center;">83.33</td>
+                  <td style="background-color: #ffffcc; text-align: center;">44.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">47.37</td>
+                  <td style="background-color: #ffffcc; text-align: center;">39.29</td>
+                  <td style="background-color: #ffffcc; text-align: center;">43.23</td>
+                  <td style="background-color: #ffffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">34.93</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">44.49</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">31.31</td>
+                  <td style="background-color: #ffcccc; text-align: center;">58.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">36.21</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">37.33</td>
+                </tr>
+                <tr>
+                  <td>LLaVA-OneVision-7B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">40.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">11.54</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>83.33</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">44.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">36.84</td>
+                  <td style="background-color: #ffffcc; text-align: center;">32.14</td>
+                  <td style="background-color: #ffffcc; text-align: center;">37.99</td>
+                  <td style="background-color: #ffffcc; text-align: center;">48.15</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">30.82</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">46.69</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">32.56</td>
+                  <td style="background-color: #ffcccc; text-align: center;">58.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">29.31</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">36.63</td>
+                </tr>
+                <tr>
+                  <td>LLaVA-Interleave-7B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">36.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;">20.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">19.23</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>83.33</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">46.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">26.32</td>
+                  <td style="background-color: #ffffcc; text-align: center;"><u><b>57.14</b></u></td>
+                  <td style="background-color: #ffffcc; text-align: center;">39.74</td>
+                  <td style="background-color: #ffffcc; text-align: center;">29.63</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">30.82</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">33.46</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">33.46</td>
+                  <td style="background-color: #ffcccc; text-align: center;">62.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">31.03</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">35.47</td>
+                </tr>
+                <tr>
+                  <td>GPT-4o-mini</td>
+                  <td style="background-color: #cce5ff; text-align: center;">80.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">60.66</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">38.46</td>
+                  <td style="background-color: #ccffcc; text-align: center;">53.33</td>
+                  <td style="background-color: #ffffcc; text-align: center;">38.40</td>
+                  <td style="background-color: #ffffcc; text-align: center;">21.05</td>
+                  <td style="background-color: #ffffcc; text-align: center;">53.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;">37.99</td>
+                  <td style="background-color: #ffffcc; text-align: center;">55.56</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">32.19</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">38.24</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">28.68</td>
+                  <td style="background-color: #ffcccc; text-align: center;">60.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">41.38</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">34.88</td>
+                </tr>
+                <tr>
+                  <td>Kimi-VL-A3B-Thinking</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">26.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">30.77</td>
+                  <td style="background-color: #ccffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffffcc; text-align: center;">48.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">36.84</td>
+                  <td style="background-color: #ffffcc; text-align: center;">28.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;">49.78</td>
+                  <td style="background-color: #ffffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">30.14</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">41.91</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">25.32</td>
+                  <td style="background-color: #ffcccc; text-align: center;">68.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">27.59</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">34.13</td>
+                </tr>
+                <tr>
+                  <td>Mistral-Small-3.1-24B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">20.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">40.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">30.77</td>
+                  <td style="background-color: #ccffcc; text-align: center;">30.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">38.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.58</td>
+                  <td style="background-color: #ffffcc; text-align: center;">35.71</td>
+                  <td style="background-color: #ffffcc; text-align: center;">29.26</td>
+                  <td style="background-color: #ffffcc; text-align: center;">51.85</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">30.82</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">31.62</td>
+                  <td style="background-color: #ccfafa; text-align: center;">50.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">29.59</td>
+                  <td style="background-color: #ffcccc; text-align: center;">38.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">34.48</td>
+                  <td style="background-color: #ffcccc; text-align: center;">20.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">31.34</td>
+                </tr>
+                <tr>
+                  <td>Mantis-CLIP</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">30.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">80.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">14.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">15.79</td>
+                  <td style="background-color: #ffffcc; text-align: center;">35.71</td>
+                  <td style="background-color: #ffffcc; text-align: center;">38.43</td>
+                  <td style="background-color: #ffffcc; text-align: center;">37.04</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">19.86</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">32.35</td>
+                  <td style="background-color: #ccfafa; text-align: center;">40.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">28.04</td>
+                  <td style="background-color: #ffcccc; text-align: center;">52.40</td>
+                  <td style="background-color: #ffcccc; text-align: center;">22.41</td>
+                  <td style="background-color: #ffcccc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #f2f2f2; text-align: center;">30.23</td>
+                </tr>
+                <tr>
+                  <td>Qwen2.5-VL-7B-Instruct</td>
+                  <td style="background-color: #cce5ff; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #cce5ff; text-align: center;">13.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">19.23</td>
+                  <td style="background-color: #ccffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">20.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.58</td>
+                  <td style="background-color: #ffffcc; text-align: center;">25.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">30.13</td>
+                  <td style="background-color: #ffffcc; text-align: center;">51.85</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">32.19</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">40.81</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">25.19</td>
+                  <td style="background-color: #ffcccc; text-align: center;">30.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">27.59</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">29.24</td>
+                </tr>
+                <tr>
+                  <td>Llama-3.2-90B-Vision-Instruct</td>
+                  <td style="background-color: #cce5ff; text-align: center;">20.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">24.67</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">11.54</td>
+                  <td style="background-color: #ccffcc; text-align: center;">16.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">26.40</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.58</td>
+                  <td style="background-color: #ffffcc; text-align: center;">32.14</td>
+                  <td style="background-color: #ffffcc; text-align: center;">26.20</td>
+                  <td style="background-color: #ffffcc; text-align: center;">22.22</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">27.40</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">25.37</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">25.58</td>
+                  <td style="background-color: #ffcccc; text-align: center;">12.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">29.31</td>
+                  <td style="background-color: #ffcccc; text-align: center;">20.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">25.41</td>
+                </tr>
+                <tr>
+                  <td>InternVL2.5-8B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">33.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">34.62</td>
+                  <td style="background-color: #ccffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">34.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">31.58</td>
+                  <td style="background-color: #ffffcc; text-align: center;">50.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">35.81</td>
+                  <td style="background-color: #ffffcc; text-align: center;">37.04</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">23.29</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">25.74</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">18.99</td>
+                  <td style="background-color: #ffcccc; text-align: center;">38.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">6.90</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">24.71</td>
+                </tr>
+                <tr>
+                  <td>Phi-3.5-vision-instruct</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">23.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;"><u><b>100.00</b></u></td>
+                  <td style="background-color: #ccffcc; text-align: center;">19.23</td>
+                  <td style="background-color: #ccffcc; text-align: center;">66.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">16.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">15.79</td>
+                  <td style="background-color: #ffffcc; text-align: center;">28.57</td>
+                  <td style="background-color: #ffffcc; text-align: center;">27.07</td>
+                  <td style="background-color: #ffffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">22.60</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">22.79</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">21.32</td>
+                  <td style="background-color: #ffcccc; text-align: center;">34.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">12.07</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">22.73</td>
+                </tr>
+                <tr>
+                  <td>DeepSeek-VL2</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">23.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">23.08</td>
+                  <td style="background-color: #ccffcc; text-align: center;">16.67</td>
+                  <td style="background-color: #ffffcc; text-align: center;">14.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">10.53</td>
+                  <td style="background-color: #ffffcc; text-align: center;">14.29</td>
+                  <td style="background-color: #ffffcc; text-align: center;">29.69</td>
+                  <td style="background-color: #ffffcc; text-align: center;">14.81</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">6.85</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">18.38</td>
+                  <td style="background-color: #ccfafa; text-align: center;">10.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">9.43</td>
+                  <td style="background-color: #ffcccc; text-align: center;">44.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">20.69</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">15.47</td>
+                </tr>
+                <tr>
+                  <td>Idefics3-8B</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">3.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">20.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">15.38</td>
+                  <td style="background-color: #ccffcc; text-align: center;">33.33</td>
+                  <td style="background-color: #ffffcc; text-align: center;">11.60</td>
+                  <td style="background-color: #ffffcc; text-align: center;">10.53</td>
+                  <td style="background-color: #ffffcc; text-align: center;">17.86</td>
+                  <td style="background-color: #ffffcc; text-align: center;">23.14</td>
+                  <td style="background-color: #ffffcc; text-align: center;">3.70</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">9.59</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">16.91</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">9.69</td>
+                  <td style="background-color: #ffcccc; text-align: center;">8.40</td>
+                  <td style="background-color: #ffcccc; text-align: center;">15.52</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">12.91</td>
+                </tr>
+                <tr>
+                  <td>Emu2-Chat</td>
+                  <td style="background-color: #cce5ff; text-align: center;">0.00</td>
+                  <td style="background-color: #cce5ff; text-align: center;">13.33</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ccffcc; text-align: center;">3.85</td>
+                  <td style="background-color: #ccffcc; text-align: center;">0.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">4.00</td>
+                  <td style="background-color: #ffffcc; text-align: center;">10.53</td>
+                  <td style="background-color: #ffffcc; text-align: center;">10.71</td>
+                  <td style="background-color: #ffffcc; text-align: center;">12.66</td>
+                  <td style="background-color: #ffffcc; text-align: center;">3.70</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">8.90</td>
+                  <td style="background-color: #ffe5cc; text-align: center;">6.99</td>
+                  <td style="background-color: #ccfafa; text-align: center;">0.00</td>
+                  <td style="background-color: #ccfafa; text-align: center;">3.62</td>
+                  <td style="background-color: #ffcccc; text-align: center;">0.00</td>
+                  <td style="background-color: #ffcccc; text-align: center;">3.45</td>
+                  <td style="background-color: #ffcccc; text-align: center;">20.00</td>
+                  <td style="background-color: #f2f2f2; text-align: center;">6.05</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{yuan2024videorefersuite,
+  author    = {Yuqian Yuan, Hang Zhang, Wentong Li, Zesen Cheng, Boqiang Zhang, Long Li, Xin Li, Deli Zhao, Wenqiao Zhang, Yueting Zhuang, Jianke Zhu, Lidong Bing},
+  title     = {VideoRefer Suite: Advancing Spatial-Temporal Object Understanding with Video LLM},
+  journal   = {arXiv},
+  year      = {2024},
+  url       = {http://arxiv.org/abs/2501.00599}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+  
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
