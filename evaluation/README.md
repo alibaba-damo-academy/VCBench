@@ -9,7 +9,7 @@ VCBench provides a standardized framework for evaluating vision-language models.
 
 ### 1.1 Output Format Requirements
 Models must produce outputs in JSONL format with the following structure:
-```json
+```
 {"id": <int>, "pred_answer": "<answer_letter>"}
 {"id": <int>, "pred_answer": "<answer_letter>"}
 ...
@@ -34,7 +34,7 @@ Models must produce outputs in JSONL format with the following structure:
 
 ### 2.1 Output Format Requirements
 For natural language responses, use this JSONL format:
-```json
+```
 {"id": <int>, "pred_answer": "<natural_language_response>"}
 {"id": <int>, "pred_answer": "<natural_language_response>"}
 ...
