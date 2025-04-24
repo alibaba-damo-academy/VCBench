@@ -14,7 +14,7 @@ This is the official repo for VCBench, a comprehensive benchmark designed for as
   <a href='https://arxiv.org/abs/2311.16922'>
     <img src='https://img.shields.io/badge/Paper-PDF-red'>
   </a>
-  <a href='https://twitter.com/Leon_L_S_C'>
+  <a href='https://x.com/danielwong404'>
     <img src='https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40Us'>
   </a>
   <a href='https://huggingface.co/datasets/cloudcatcher2/VCBench'>
@@ -23,7 +23,7 @@ This is the official repo for VCBench, a comprehensive benchmark designed for as
   <a href='https://huggingface.co/spaces/cloudcatcher2/VCBench-Leaderboard'>
     <img src='https://img.shields.io/badge/🏆-Leaderboard-blueviolet.svg' alt='leaderboard'>
   </a>
-  <a href='https://your-homepage-link.com'>
+  <a href='https://alibaba-damo-academy.github.io/VCBench/'>
     <img src='https://img.shields.io/badge/🌐-Homepage-0A8FDC.svg' alt='homepage'>
   </a>
 </div>
@@ -31,7 +31,7 @@ This is the official repo for VCBench, a comprehensive benchmark designed for as
 
 
 ## 🔥 Update
-* [2025-04-10]: 🚀 Paper, Codes and Datas of VCBench online. Check out [this link](https://arxiv.org/abs/2311.16922) for details.
+* [2025-04-10]: 🚀 Paper, Codes and Datas of VCBench online. Check out [this link](https://alibaba-damo-academy.github.io/VCBench/) for details.
 
 
 ## 🎯 Overview
