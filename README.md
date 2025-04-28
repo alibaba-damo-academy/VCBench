@@ -20,7 +20,7 @@ This is the official repo for VCBench, a comprehensive benchmark designed for as
   <a href='https://huggingface.co/datasets/cloudcatcher2/VCBench'>
     <img src='https://img.shields.io/badge/🤗-Dataset-9C276A.svg' alt='hf_data'>
   </a>
-  <a href='https://huggingface.co/spaces/cloudcatcher2/VCBench-Leaderboard'>
+  <a href='https://alibaba-damo-academy.github.io/VCBench/index.html#learderboard'>
     <img src='https://img.shields.io/badge/🏆-Leaderboard-blueviolet.svg' alt='leaderboard'>
   </a>
   <a href='https://alibaba-damo-academy.github.io/VCBench/'>
