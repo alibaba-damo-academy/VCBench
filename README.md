@@ -20,7 +20,7 @@ This is the official repo for VCBench, a comprehensive benchmark designed for as
   <a href='https://huggingface.co/datasets/cloudcatcher2/VCBench'>
     <img src='https://img.shields.io/badge/🤗-Dataset-9C276A.svg' alt='hf_data'>
   </a>
-  <a href='https://alibaba-damo-academy.github.io/VCBench/index.html#learderboard'>
+  <a href='https://alibaba-damo-academy.github.io/VCBench/index.html#Learderboard1'>
     <img src='https://img.shields.io/badge/🏆-Leaderboard-blueviolet.svg' alt='leaderboard'>
   </a>
   <a href='https://alibaba-damo-academy.github.io/VCBench/'>
@@ -70,7 +70,7 @@ For model evaluation, please refer to [evaluation](evaluation/README.md).
 
 ## 🏆 Leaderboard
 
-The [Leaderboard](https://alibaba-damo-academy.github.io/VCBench/index.html#learderboard) for VCBench is continuously being updated, welcoming the contribution of your LVLMs!
+The [Leaderboard](https://alibaba-damo-academy.github.io/VCBench/index.html#Learderboard1) for VCBench is continuously being updated, welcoming the contribution of your LVLMs!
 
 Please note that to thoroughly evaluate your own LVLM, you are required to provide us with `jsonl` file. These should include the question-id and your final response. We have provided a submission format in the `submit.jsonl` file. After completing the aforementioned steps, please contact us via gasolsun36@gmail.com to submit your results and to update the leaderboard.
 
