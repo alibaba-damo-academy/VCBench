@@ -85,7 +85,7 @@ If you find our work helpful for your research, please consider giving a star an
 ```bibtex
 @misc{wong2025vcbench
   author    = {Zhikai Wang and Jiashuo Sun and Wenqi Zhang and Zhiqiang Hu and Xin Li and Fan Wang and Deli Zhao},
-  title     = {VCBench: Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency},
+  title     = {Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency},
   year      = {2025},
   eprint    = {2504.18589},
   archivePrefix = {arxiv},
